@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: d72454b9a1be0f74ba6f2bd032e329c8
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: port_tower_town_collision
+    100004: port_tower_town_doorleft
+    100006: port_tower_town_doorright
+    100008: port_tower_town_exterior
+    100010: port_tower_town_interior
+    100012: DecoSurface-Floor
+    100014: DecoSurface-Wall
+    100016: port_tower_town_decofloor
+    100018: port_tower_town_decowall
+    100020: port_tower_town_decoceiling
+    100022: port_tower_town_decoroof
+    100024: port_tower_town_decowallext
+    100026: DecoSurface-Ceiling
+    100028: DecoSurface-ExteriorWall
+    100030: DecoSurface-Roof
+    400000: //RootNode
+    400002: port_tower_town_collision
+    400004: port_tower_town_doorleft
+    400006: port_tower_town_doorright
+    400008: port_tower_town_exterior
+    400010: port_tower_town_interior
+    400012: DecoSurface-Floor
+    400014: DecoSurface-Wall
+    400016: port_tower_town_decofloor
+    400018: port_tower_town_decowall
+    400020: port_tower_town_decoceiling
+    400022: port_tower_town_decoroof
+    400024: port_tower_town_decowallext
+    400026: DecoSurface-Ceiling
+    400028: DecoSurface-ExteriorWall
+    400030: DecoSurface-Roof
+    2300000: port_tower_town_collision
+    2300002: port_tower_town_doorleft
+    2300004: port_tower_town_doorright
+    2300006: port_tower_town_exterior
+    2300008: port_tower_town_interior
+    2300010: port_tower_town_decofloor
+    2300012: port_tower_town_decowall
+    2300014: port_tower_town_decoceiling
+    2300016: port_tower_town_decoroof
+    2300018: port_tower_town_decowallext
+    3300000: port_tower_town_collision
+    3300002: port_tower_town_doorleft
+    3300004: port_tower_town_doorright
+    3300006: port_tower_town_exterior
+    3300008: port_tower_town_interior
+    3300010: port_tower_town_decofloor
+    3300012: port_tower_town_decowall
+    3300014: port_tower_town_decoceiling
+    3300016: port_tower_town_decoroof
+    3300018: port_tower_town_decowallext
+    4300000: port_tower_town_exterior
+    4300002: port_tower_town_interior
+    4300004: port_tower_town_collision
+    4300006: port_tower_town_doorright
+    4300008: port_tower_town_doorleft
+    4300010: port_tower_town_decowall
+    4300012: port_tower_town_decofloor
+    4300014: port_tower_town_decoceiling
+    4300016: port_tower_town_decowallext
+    4300018: port_tower_town_decoroof
+    6400000: port_tower_town_collision
+    6400002: port_tower_town_doorleft
+    6400004: port_tower_town_doorright
+    6400006: port_tower_town_exterior
+    6400008: port_tower_town_interior
+    6400010: port_tower_town_decofloor
+    6400012: port_tower_town_decowall
+    6400014: port_tower_town_decoceiling
+    6400016: port_tower_town_decoroof
+    6400018: port_tower_town_decowallext
+    9500000: //RootNode
+    11400000: //RootNode
+    11400002: DecoSurface-Floor
+    11400004: DecoSurface-Wall
+    11400006: DecoSurface-Ceiling
+    11400008: DecoSurface-ExteriorWall
+    11400010: DecoSurface-Roof
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 2
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
