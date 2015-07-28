@@ -1,11 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InputHandler.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TouchCharacterController.cs">
     <Files>
-      <File FileName="Assets\Scripts\TouchCharacterController.cs" Line="90" Column="36" />
-      <File FileName="..\SVN\Win8_TableTop_Hockey\Assets\Scripts\Win8Touch.cs" Line="34" Column="24" />
-      <File FileName="Assets\Scripts\InputHandler.cs" Line="22" Column="28" />
-      <File FileName="Assets\Scripts\ClickCharacterController.cs" Line="52" Column="1" />
+      <File FileName="Assets\Scripts\TouchCharacterController.cs" Line="139" Column="11" />
+      <File FileName="Assets\Scripts\InputHandler.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

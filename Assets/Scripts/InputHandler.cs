@@ -19,7 +19,6 @@ public class InputHandler : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			InputDown(-1);
-			Debug.Log("Click Down");
 		}
 		
 		if (Input.GetMouseButtonUp(0))
