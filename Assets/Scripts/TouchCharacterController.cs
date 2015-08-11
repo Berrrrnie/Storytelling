@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Janus;
 
 public class TouchCharacterController : MonoBehaviour {
 	
@@ -31,9 +32,13 @@ public class TouchCharacterController : MonoBehaviour {
 	
 	public GameObject terrain;
 
-	void Start () {
+	Timeline<Vector3> charPositionTimeline;
 
-		destinationPosition = transform.position;
+	// server and orchestrator machine
+	public bool server = true;
+
+	void Start () {
+		
 		anim = GetComponent<Animator> ();
 
 		pathLine = GetComponent<LineRenderer> ();
@@ -42,8 +47,24 @@ public class TouchCharacterController : MonoBehaviour {
 		InputHandler.InputUp += OnInputUp;
 
 		touchCollider = GetComponent<CapsuleCollider>();
+
+		destinationPosition = transform.position;
 		lastPosition = transform.position;
 
+	}
+
+	public void Awake(){
+
+		Debug.Log(gameObject.name);
+
+		charPositionTimeline = TimelineManager.Default.Get<Vector3>(gameObject.name);
+		charPositionTimeline.AddSendFilter(TimelineUtils.BuildDeltaRateFilter <Vector3>((x,y) => Vector3.Distance(x,y), ()=>0.05f, ()=>2.0f));
+
+	}
+
+	public void OnDestroy()
+	{		
+		TimelineManager.Default.Remove(this.charPositionTimeline);
 	}
 
 	void OnInputDown (int id)
@@ -56,14 +77,7 @@ public class TouchCharacterController : MonoBehaviour {
 			// touched this character
 			ray = Camera.main.ScreenPointToRay(position);
 
-			/*
-			if (terrain.collider.Raycast (ray, out terrainHit, Mathf.Infinity)) {
-				destinationPosition = terrainHit.point;
-			}
-			*/
-
 			if (Physics.Raycast(ray, out hitInfo))
-			//if (Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(position), 0.3f) == _touchCollider)
 			{
 				if (hitInfo.transform.GetComponent<CapsuleCollider>() == touchCollider){
 					dragging = true;
@@ -92,82 +106,74 @@ public class TouchCharacterController : MonoBehaviour {
 		}
 	
 		return worldPosition;
-
 	}
 	
 	void Update () {
 
-		/*
-		if (Input.GetMouseButtonDown(0))
+		if(server)
 		{
-			//find position
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-			//set destination to position
-			if (terrain.collider.Raycast (ray, out terrainHit, Mathf.Infinity)) {
-				destinationPosition = terrainHit.point;
-			}			
-		}
-		*/
-
-
-		if (dragging)
-		{
-			Vector3 position;
-
-			if (InputHandler.GetInputPositionByID(draggingID, out position))
+			if (dragging)
 			{
+				Vector3 position;
 
-				position = InputPositionToWorld(position);
+				if (InputHandler.GetInputPositionByID(draggingID, out position))
+				{
 
-				if (Mathf.Abs((position - lastPosition).magnitude) >= 0.2f){
+					position = InputPositionToWorld(position);
 
-					wayPoints.Enqueue(position);
-					lastPosition = position;
+					if (Mathf.Abs((position - lastPosition).magnitude) >= 0.1f){
+
+						wayPoints.Enqueue(position);
+						lastPosition = position;
+
+					}
+				}
+			}
+			
+			destinationDistance = Vector3.Distance (destinationPosition, transform.position);
+			
+			if (destinationDistance > 0.2f) { 
+				anim.SetBool (isWalkingHash, true);
+				transform.rotation = Quaternion.LookRotation (destinationPosition - transform.position);
+			} else {
+				anim.SetBool (isWalkingHash, false);
+			}
+
+			if (wayPoints.Count > 0) {
+
+				//This threshold needs to be looked at for now < 0.5 should be okay
+				if (Mathf.Abs ((wayPoints.Peek () - transform.position).magnitude) < 0.5f) {
+
+					//character has reached the position
+					destinationPosition = wayPoints.Dequeue ();
+
+					pathNodes = wayPoints.ToArray();
+					
+					pathLine.SetVertexCount(pathNodes.Length + 1);
+
+					pathLine.SetPosition(0, this.transform.position);
+
+					for (int i = 0; i < pathNodes.Length; i++){
+						pathLine.SetPosition(i + 1, pathNodes[i]);
+					}
 
 				}
-
-				//destinationPosition = position;
 			}
-		}
-		
-		destinationDistance = Vector3.Distance (destinationPosition, transform.position);
-		
-		if (destinationDistance > 0.2f) { 
-			anim.SetBool (isWalkingHash, true);
-			transform.rotation = Quaternion.LookRotation (destinationPosition - transform.position);
+
+			transform.position = Vector3.MoveTowards (transform.position, destinationPosition, Time.deltaTime * moveSpeed);
+
+
+			if (charPositionTimeline != null){
+				Debug.Log("Updating");
+				charPositionTimeline[0] = transform.position;
+			}
+
 		} else {
-			anim.SetBool (isWalkingHash, false);
+			transform.position = charPositionTimeline[-0.05f];
 		}
 
-		if (wayPoints.Count > 0) {
-
-			//Debug.Log((wayPoints.Peek () - transform.position).magnitude);
-			//This threshold needs to be looked at for now < 0.5 should be okay
-			if (Mathf.Abs ((wayPoints.Peek () - transform.position).magnitude) < 0.8f) {
-
-				//character has reached the position
-				destinationPosition = wayPoints.Dequeue ();
-
-				pathNodes = wayPoints.ToArray();
-				
-				pathLine.SetVertexCount(pathNodes.Length + 1);
-
-				pathLine.SetPosition(0, this.transform.position);
-
-				for (int i = 0; i < pathNodes.Length; i++){
-					pathLine.SetPosition(i + 1, pathNodes[i]);
-				}
-
-			}
-		}
-
-		transform.position = Vector3.MoveTowards (transform.position, destinationPosition, Time.deltaTime * moveSpeed);
 		destinationHeading = destinationPosition - transform.position;
 
-		//Debug.Log (transform.position);
-		//Debug.Log (destinationPosition);
-		//Debug.Log (wayPoints.Count);
 	}
 
 }

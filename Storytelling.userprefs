@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TouchCharacterController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterTimelines.cs">
     <Files>
-      <File FileName="Assets\Scripts\TouchCharacterController.cs" Line="139" Column="11" />
-      <File FileName="Assets\Scripts\InputHandler.cs" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\TouchCharacterController.cs" Line="31" Column="58" />
+      <File FileName="Assets\Scripts\CharacterTimelines.cs" Line="16" Column="38" />
+      <File FileName="Assets\Scripts\PlayerCharacterController.cs" Line="50" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
